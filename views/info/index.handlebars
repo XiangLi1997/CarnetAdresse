@@ -1,0 +1,9 @@
+{{#each info}}
+    <div class="card card-body mb-2">
+        <h4>Age : {{age}}</h4>
+        <h4>Famille : {{famille}}</h4>
+        <h4>Rôle : {{role}}</h4>
+        <h4>Nourriture : {{nourriture}}</h4>
+        <a href="/info/edit/{{id}}" class="btn btn-dark btn-block">Modifier</a>
+    </div>
+{{/each}}

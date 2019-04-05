@@ -1,0 +1,23 @@
+<div class="card card-body">
+    <h3>Informations personnnelles</h3>
+    <form action="/info/{{info.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" class="form-control" name="age" value="{{info.age}}">
+        </div>
+        <div class="form-group">
+            <label for="famille">Famille</label>
+            <input type="text" class="form-control" name="famille" value="{{info.famille}}">
+        </div>
+        <div class="form-group">
+            <label for="role">Rôle</label>
+            <input type="text" class="form-control" name="role" value="{{info.role}}">
+        </div>
+        <div class="form-group">
+            <label for="nourriture">Nourriture</label>
+            <input type="text" class="form-control" name="nourriture" value="{{info.nourriture}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+</div>

@@ -1,0 +1,11 @@
+{{#each amis}}
+    <div class="card card-body mb-2">
+        <h4>{{login}}</h4>
+        <form method="POST" action="/amis/{{id}}?_method=DELETE">
+            <input type="hidden" name="method" value="DELETE">
+            <input type="submit" class="btn btn-danger btn-block" value="Supprimer">
+        </form>
+    </div>
+{{else}}
+    <p>Vous n'avez pas d'ami</p>
+{{/each}}

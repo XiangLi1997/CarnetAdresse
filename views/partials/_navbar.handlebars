@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Carner d'adresse</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-auto">
+
+                {{#if user}}
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Amis</a>
+                        <div class="dropdown-menu">
+                            <a href="/amis" class="dropdown-item">Vos amis</a>
+                            <a href="/amis/add" class="dropdown-item">Ajouter un ami</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="navbarDropdownMenuLink">Evenements</a>
+                        <div class="dropdown-menu">
+                            <a href="/evenements" class="dropdown-item">Les évenements</a>
+                            <a href="/evenements/add" class="dropdown-item">Créer un évenement</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/info">Informations personnels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/logout" class="nav-link">Déconnection</a>
+                    </li>
+                {{else}}
+                    <li class="nav-item">
+                        <a href="/users/login" class="nav-link">Connection</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/users/register" class="nav-link">Inscription</a>
+                    </li>
+                {{/if}}
+
+
+
+
+
+        </div>
+    </div>
+</nav>
