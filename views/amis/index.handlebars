@@ -1,6 +1,7 @@
+<h2>Liste d'amis</h2>
 {{#each amis}}
     <div class="card card-body mb-2">
-        <h4>{{login}}</h4>
+        <h4>Login : {{login}}</h4>
         <form method="POST" action="/amis/{{id}}?_method=DELETE">
             <input type="hidden" name="method" value="DELETE">
             <input type="submit" class="btn btn-danger btn-block" value="Supprimer">

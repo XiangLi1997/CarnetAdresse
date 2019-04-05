@@ -76,7 +76,7 @@ router.post("/", urlencodedParser, (req, res) => {
 // delete amis
 router.delete("/:id", (req, res) => {
 
-    Ami.remove({
+    Ami.deleteOne({
         _id:req.params.id
     })
         .then(() => {

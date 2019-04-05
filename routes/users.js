@@ -9,6 +9,8 @@ const passport = require('passport');
 // import model
 require('../models/User');
 const User = mongoose.model('users');
+require("../models/Info");
+const Info = mongoose.model("info");
 
 // body-parser middleware
 var jsonParser = bodyParser.json()
@@ -90,6 +92,11 @@ router.post("/register", urlencodedParser, (req, res) => {
                                 .then((user) => {
                                     req.flash("success_msg","Inscription réussie");
                                     res.redirect("/users/login")
+                                    const newInfo = new Info({
+                                        login:req.body.login,
+                                        user:user.id
+                                    })
+                                    newInfo.save()
                                 })
                                 .catch((err) => {
                                     req.flash("error_msg","Inscription échouée");
@@ -97,8 +104,6 @@ router.post("/register", urlencodedParser, (req, res) => {
                                 })
                         });
                     });
-
-
                 }
 
             })
