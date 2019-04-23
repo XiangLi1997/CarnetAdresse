@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const router = express.Router()
+const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 
@@ -13,8 +13,8 @@ require("../models/Info");
 const Info = mongoose.model("info");
 
 // body-parser middleware
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 
 // users login & register
@@ -31,16 +31,16 @@ router.post("/login", urlencodedParser, (req, res, next) =>{
     })(req, res, next)
 
 
-})
+});
 
 router.get("/register", (req, res) => {
     res.render("users/register");
-})
+});
 
 router.post("/login", urlencodedParser, (req, res) => {
     console.log(req.body);
     res.send("login");
-})
+});
 
 router.post("/register", urlencodedParser, (req, res) => {
     //res.send("register");
@@ -75,7 +75,7 @@ router.post("/register", urlencodedParser, (req, res) => {
         User.findOne({login:req.body.login})
             .then((user) =>{
                 if(user){
-                    req.flash("error_msg","login existant!")
+                    req.flash("error_msg","login existant!");
                     res.redirect("/users/register");
                 }
                 else
@@ -83,7 +83,7 @@ router.post("/register", urlencodedParser, (req, res) => {
                     const newUser = new User({
                         login:req.body.login,
                         password:req.body.password
-                    })
+                    });
                     bcrypt.genSalt(10, (err, salt) => {
                         bcrypt.hash(newUser.password, salt, (err, hash) => {
                             if(err) throw err;
@@ -91,11 +91,11 @@ router.post("/register", urlencodedParser, (req, res) => {
                             newUser.save()
                                 .then((user) => {
                                     req.flash("success_msg","Inscription réussie");
-                                    res.redirect("/users/login")
+                                    res.redirect("/users/login");
                                     const newInfo = new Info({
                                         login:req.body.login,
                                         user:user.id
-                                    })
+                                    });
                                     newInfo.save()
                                 })
                                 .catch((err) => {
@@ -112,13 +112,13 @@ router.post("/register", urlencodedParser, (req, res) => {
     }
 
 
-})
+});
 
 router.get("/logout", (req,res) =>{
     req.logout();
     req.flash("succes_msg","Déconnection réussie")
     res.redirect("/")
-})
+});
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const router = express.Router()
+const router = express.Router();
 
 const {ensureAuthenticated} = require("../helpers/auth");
 
@@ -12,8 +12,8 @@ require('../models/User');
 const User = mongoose.model('users');
 
 // body-parser middleware
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // amis
 router.get("/", ensureAuthenticated,(req, res) => {
@@ -24,11 +24,11 @@ router.get("/", ensureAuthenticated,(req, res) => {
                 amis:amis
             });
         })
-})
+});
 
 router.get("/add", ensureAuthenticated, (req, res) => {
     res.render('amis/add')
-})
+});
 
 router.post("/", urlencodedParser, (req, res) => {
     let errors = [];
@@ -48,7 +48,7 @@ router.post("/", urlencodedParser, (req, res) => {
         User.findOne({login:req.body.login})
             .then((user) => {
                 if(!user){
-                    req.flash("error_msg","l'utilisateur n'existe pas!")
+                    req.flash("error_msg","l'utilisateur n'existe pas!");
                     res.redirect("/amis/add");
                 }
                 else
@@ -56,7 +56,7 @@ router.post("/", urlencodedParser, (req, res) => {
                     const newAmi = {
                         login:req.body.login,
                         user:req.user.id
-                    }
+                    };
 
 
 
@@ -71,7 +71,7 @@ router.post("/", urlencodedParser, (req, res) => {
 
 
     }
-})
+});
 
 // delete amis
 router.delete("/:id", (req, res) => {
@@ -83,7 +83,7 @@ router.delete("/:id", (req, res) => {
             req.flash("success_msg", "Suppresion effectué");
             res.redirect("/amis");
         })
-})
+});
 
 
 module.exports = router;

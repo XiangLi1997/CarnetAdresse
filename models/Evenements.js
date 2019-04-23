@@ -19,6 +19,6 @@ const EvenementSchema = new Schema({
         type:Date,
         default: Date.now
     }
-})
+});
 
 mongoose.model('evenements', EvenementSchema);

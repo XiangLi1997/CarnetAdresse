@@ -17,6 +17,6 @@ const AmiSchema = new Schema({
     }
 
 
-})
+});
 
 mongoose.model('amis', AmiSchema);

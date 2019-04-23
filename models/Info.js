@@ -15,6 +15,6 @@ const InfoSchema = new Schema({
     famille:String,
     role:String,
     nourriture:String
-})
+});
 
 mongoose.model('info', InfoSchema);

@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const {ensureAuthenticated} = require("../helpers/auth");
 
-const router = express.Router()
+const router = express.Router();
 
 // import models
 require("../models/Info");
 const Info = mongoose.model("info");
 
 // body-parser middleware
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // info
 router.get("/", ensureAuthenticated,(req, res) => {
@@ -21,7 +21,7 @@ router.get("/", ensureAuthenticated,(req, res) => {
                 info:info
             });
         })
-})
+});
 
 // Edit
 router.get("/edit/:id", ensureAuthenticated,(req, res) => {
@@ -34,7 +34,7 @@ router.get("/edit/:id", ensureAuthenticated,(req, res) => {
             });
         })
 
-})
+});
 
 
 router.put("/:id", urlencodedParser,(req,res) => {
@@ -45,7 +45,7 @@ router.put("/:id", urlencodedParser,(req,res) => {
             info.age = req.body.age;
             info.famille = req.body.famille;
             info.role = req.body.role;
-            info.nourriture = req.body.nourriture
+            info.nourriture = req.body.nourriture;
 
             info.save()
                 .then(info => {
@@ -53,7 +53,7 @@ router.put("/:id", urlencodedParser,(req,res) => {
                     res.redirect('/info');
                 })
         })
-})
+});
 
 
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const router = express.Router()
+const router = express.Router();
 const {ensureAuthenticated} = require("../helpers/auth");
 
 // import models
@@ -10,8 +10,8 @@ require("../models/Evenements");
 const Evenement = mongoose.model("evenements");
 
 // body-parser middleware
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // évenements
 router.get("/", ensureAuthenticated,(req, res) => {
@@ -22,11 +22,11 @@ router.get("/", ensureAuthenticated,(req, res) => {
                 evenements:evenements
             });
         })
-})
+});
 
 router.get("/add", ensureAuthenticated,(req, res) => {
     res.render('evenements/add')
-})
+});
 
 router.post("/", urlencodedParser, (req, res) => {
     let errors = [];
@@ -55,7 +55,7 @@ router.post("/", urlencodedParser, (req, res) => {
             title:req.body.title,
             lieu:req.body.lieu,
             heure:req.body.heure
-        }
+        };
         new Evenement(newEvenement)
             .save()
             .then(idea => {
@@ -64,6 +64,6 @@ router.post("/", urlencodedParser, (req, res) => {
             })
     }
 
-})
+});
 
 module.exports = router;

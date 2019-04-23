@@ -28,7 +28,7 @@ mongoose.connect("mongodb+srv://todoapp:lixiang1997@cluster0-ftfdx.gcp.mongodb.n
         })
         .catch(err => {
             console.log(err);
-        })
+        });
 
 
 
@@ -49,18 +49,18 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // body-parser middleware
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // method-override middleware
-app.use(methodOverride('_method'))
+app.use(methodOverride('_method'));
 
 // session & flash middleware
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
-}))
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -75,11 +75,11 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     res.locals.user = req.user || null;
     next();
-})
+});
 
 // Router settings
 app.get('/', (req, res) => {
-    const title = "Carnet d'adresse"
+    const title = "Carnet d'adresse";
     res.render("index", {
         title:title
     });
